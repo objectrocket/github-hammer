@@ -1,0 +1,20 @@
+version: 2.1
+jobs:
+  hello-world:
+    docker:
+      - image: objectrocket/platform-cicd:latest
+        auth:
+          username: ${DOCKER_USERNAME}
+          password: ${DOCKER_PASSWORD}
+    steps:
+      - checkout
+      - run:
+          name: print hello world
+          command: echo "hellow world"
+
+workflows:
+  version: 2
+  basic-workflow:
+    jobs:
+      - hello-world:
+          context: platform-eng
