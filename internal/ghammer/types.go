@@ -12,12 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package ghammer
 
 import (
-	"github.com/objectrocket/github-hammer/cmd"
+	githubv3 "github.com/google/go-github/v28/github"
 )
 
-func main() {
-	cmd.Execute()
+// RepoInfo contains basic information about a repository, as well as the repository object
+type RepoInfo struct {
+	Name       string
+	OwnerLogin string
+	CodeOwners []string
+	Repo       *githubv3.Repository
+}
+
+// RepoListOptions controls how the repository list is returned
+type RepoListOptions struct {
+	Limit           int
+	IncludeArchived bool
 }
